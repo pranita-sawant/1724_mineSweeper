@@ -1,38 +1,40 @@
-var W = 600, H = 600;
-var BLOCK_W = W / COLS,
-    BLOCK_H = H / ROWS;
+var canvasWidth = 600, canvasHeight = 600;
+var BLOCK_WIDTH = canvasWidth / COLS,
+    BLOCK_HEIGHT = canvasHeight / ROWS;
 var canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d');
 var colors = [
     'blue', 'darkgreen', 'darkred', 'navyblue', 'purple', 'black'
 ];
+
 var bombIcon = new Image();
 bombIcon.src = 'images/mines.jpg';
 var flagIcon = new Image();
 flagIcon.src = 'images/flag.png';
 
+
 function modelToView(x, y) {
     return {
-        x: x * BLOCK_W,
-        y: y * BLOCK_H
+        x: x * BLOCK_WIDTH,
+        y: y * BLOCK_HEIGHT
     };
 }
 
 function viewToModel(x, y) {
     return {
-        x: Math.floor(x / BLOCK_W),
-        y: Math.floor(y / BLOCK_H)
+        x: Math.floor(x / BLOCK_WIDTH),
+        y: Math.floor(y / BLOCK_HEIGHT)
     };
 }
 
 function renderMine(x, y) {
     var viewCoordinates = modelToView(x, y);
-    ctx.drawImage(bombIcon, viewCoordinates.x, viewCoordinates.y, BLOCK_W, BLOCK_H);
+    ctx.drawImage(bombIcon, viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
 }
 
 function renderFlag(x, y) {
     var viewCoordinates = modelToView(x, y);
-    ctx.drawImage(flagIcon, viewCoordinates.x, viewCoordinates.y, BLOCK_W, BLOCK_H);
+    ctx.drawImage(flagIcon, viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
 }
 
 function renderNumber(x, y) {
@@ -44,9 +46,9 @@ function renderNumber(x, y) {
         textSizeNumber = ctx.measureText(board[y][x]);
     ctx.fillText(
         board[y][x],
-        viewCoordinates.x + Math.floor(BLOCK_W / 2) - textSizeNumber.width / 2,
-        viewCoordinates.y + Math.floor(BLOCK_H / 2) + textSizeM.width / 2
-    );
+        viewCoordinates.x + Math.floor(BLOCK_WIDTH / 2) - textSizeNumber.width / 2,
+        viewCoordinates.y + Math.floor(BLOCK_HEIGHT / 2) + textSizeM.width / 2
+    ); 
 }
 
 function renderBlock(x, y) {
@@ -63,8 +65,8 @@ function renderBlock(x, y) {
     }
 
     ctx.strokeStyle = 'black';
-    ctx.fillRect(viewCoordinates.x, viewCoordinates.y, BLOCK_W, BLOCK_H);
-    ctx.strokeRect(viewCoordinates.x, viewCoordinates.y, BLOCK_W, BLOCK_H);
+    ctx.fillRect(viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
+    ctx.strokeRect(viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
 
     if (state[y][x] == STATE_FLAGGED) {
         renderFlag(x, y);
@@ -72,9 +74,9 @@ function renderBlock(x, y) {
 
     if (state[y][x] == STATE_OPENED) {
         switch (board[y][x]) {
-            case 0:
+            case 0: 
                 break;
-            case BLOCK_MINE:
+            case SET_MINE:
                 renderMine(x, y);
                 break;
             default:
@@ -91,4 +93,4 @@ function render() {
     }
 }
 
-render();
+ render();
