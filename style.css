@@ -1,5 +1,5 @@
 body{
-  background-image: url("images/grass.jpg");
+  background-image: url("images/features.jpg");
 }
 
 .menu{
@@ -7,7 +7,7 @@ body{
     width:auto;
     height: 80px;
     border-radius:12px;
-    margin:80px 0px 0px 340px;
+    margin:30px 0px 0px 350px;
     padding-left: 50px;
 }
 input{
@@ -61,7 +61,7 @@ canvas {
 
 /******** Drop Down Button ************/
 
-.dropbtn {
+select {
     background-color: white;
     height: 4em;
     width: 12em;
@@ -71,14 +71,10 @@ canvas {
     font-family: Arial, Helvetica, sans-serif;
     border: none;
     cursor: pointer;
-    border-radius:12px;
     margin: 0px 0px 0px 10px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.20);
   }
   
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: grey;
-  }
   
   .dropdown {
     position: relative;

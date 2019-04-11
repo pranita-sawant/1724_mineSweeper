@@ -1,5 +1,4 @@
-var COLS = 20, ROWS = 20, 
-
+var COLS = 15, ROWS = 15, 
 MINES = ROWS * 2;
 console.log(MINES);
 
@@ -13,7 +12,19 @@ var INIT_STATE = 0,
 var SET_MINE = -1;
 var playing = true;
 
+/*function changeFunc() {
+    var selectBox = document.getElementById("selectBox");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    alert(selectedValue);
+
+    if(selectedValue == "easy"){
+        return x >= 0 && y >=0 
+              && x < 8 && y < 8;
+    }
+}
+*/
 function setBoundary(x, y) {
+    
     return x >= 0 && y >= 0
         && x < COLS && y < ROWS;
 }
@@ -96,6 +107,7 @@ function timer(){
 }
 
 function init() {
+    timer();
     for (var y = 0; y < ROWS; ++y) {
         board.push([]);
         state.push([]);
