@@ -4,15 +4,22 @@
         <title>Minesweeper</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <link rel="icon" href="images/shockFace.png" />
-        <link rel='stylesheet' href='style.css' /> 
+        <link rel="icon" href="dist/images/shockFace.png" />
+        <link rel='stylesheet' href='dist/css/style.css' /> 
     </head>
     <body>
-    
+    <div class="displayFlag">
+        <div class=flag>
+            <img src="dist/images/flag.png" />
+        </div>
+        <div id="flagCount">
+            <span></span>
+        </div>
+    </div>
     <div class="menu">
         <div class="dropdown">
             <select id="selectBox" onchange="changeFunc();" >
-                <option value="">Levels</option>
+                <option value="">Select Level</option>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="difficult">Difficult</option>
@@ -20,12 +27,12 @@
         </div>
         
         <div class="smiley">
-            <img src="images/smileFace.png" alt="smile" id="smiley" />
+            <img src="dist/images/smileFace.png" alt="smile" id="smiley" />
         </div>
 
         <div class="displayTimer">
             <div class=timer>
-                <h5>Timer :</h5>
+                <h5>Timer </h5>
             </div>
             <div id="dispTimer">
                 <p></p>
@@ -33,12 +40,12 @@
         </div>
     </div>
         <canvas id='canvas' width='600' height='600'>
-        
+            
         </canvas>
-        <script src="timer.js"></script>
-        <script src='controller.js'></script>
-        <script src='renderGame.js'></script>
-        <script src='mainGame.js'></script>
+        <script src="dist/js/timer.js"></script>
+        <script src='dist/js/controller.js'></script>
+        <script src='dist/js/renderGame.js'></script>
+        <script src='dist/js/mainGame.js'></script>
         <script>
             
         </script>

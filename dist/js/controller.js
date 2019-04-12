@@ -16,15 +16,13 @@ canvas.addEventListener('mousedown', function(e) {
             openBlock(modelCoordinates.x, modelCoordinates.y);
             break;
         case MOUSE_RIGHT:
-        console.log(flag_count);
+        //console.log(flag_count);
                 //if(flag_count <= MINES){
-                    if(flag_count > 0 && flag_count <= MINES)
                     flagBlock(modelCoordinates.x, modelCoordinates.y);
-                    flag_count--;
-                    if(flag_count == 0)
-                        alert("No more flags");
+
+                             
                 //}
-                
+         updateflag();       
                 
     }
 

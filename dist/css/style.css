@@ -1,5 +1,5 @@
 body{
-  background-image: url("images/bubble.jpg");
+ /* background-image: url("images/bubble.jpg");*/
 }
 
 .menu{
@@ -7,9 +7,29 @@ body{
     width:auto;
     height: 80px;
     border-radius:12px;
-    margin: 1em 0em 0em 21.5em;
+    margin: 1em 0em 0em 30em;
     padding-left: 50px;
 }
+#flagCount{
+    margin: 20px 0 0 70px;
+    font-size: 30px;
+}
+.flag{
+    float: left;
+    font-size: 30px;
+    margin: 0px 0 0 5px;
+}
+
+.displayFlag{
+    background-color: white;
+    float: left;
+    height: 4em;
+    width: 7em;
+    margin: 0px -17px 10px 400px;
+    border-radius:12px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.20);
+}
+
 input{
     width: 6em;
     height: 2em;
@@ -17,13 +37,14 @@ input{
 }
 
 img{
-    margin: 6px 0 0 15px; 
+    margin: 8px 0 0 8px; 
 }
+
 .smiley{
     background-color: white;
     height: 4em;
-    width: 5em;
-    margin: 0px 0px 0px 50px;
+    width: 4em;
+    margin: 0px 0px 0px 40px;
     border-radius:12px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.20);
 }
@@ -37,16 +58,16 @@ img{
 .displayTimer{
     background-color: white;
     height: 4em;
-    width: 15em;
-    margin: 0px 0px 0px 50px;
+    width: 12em;
+    margin: 0px 0px 0px 30px;
     border-radius:12px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.20);
+    box-shadow: 0 12px 16px 0 rgba(83, 35, 35, 0.2);
 }
 
 p{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
-    margin: 20px 0px 0px 10px;
+    margin: 20px 0px 0px 100px;
     /*float: right;*/
     
 }
@@ -55,7 +76,6 @@ p{
 canvas {
     display: block;
     margin: 1em 0em 0em 25em;
-    color: #2c861b;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.59);
 }
 
@@ -65,7 +85,7 @@ canvas {
 select {
     background-color: white;
     height: 4em;
-    width: 12em;
+    width: 8em;
     padding: 16px;
     font-size: 15px;
     font-style: bold;

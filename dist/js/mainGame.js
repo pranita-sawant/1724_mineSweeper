@@ -2,8 +2,7 @@ var COLS, ROWS, MINES;
 var first_click = false;
 var board = [];
 var state = [];
-var INIT_STATE = 0,
-    STATE_CLOSED = 0,
+STATE_CLOSED = 0,
     STATE_FLAGGED = 1,
     STATE_OPENED = 2;
 var SET_MINE = -1;
@@ -20,17 +19,17 @@ var MOUSE_LEFT = 1,
     MOUSE_RIGHT = 3;
 
 var bombIcon = new Image();
-bombIcon.src = 'images/mines.jpg';
+bombIcon.src = 'dist/images/mines.jpg';
 var flagIcon = new Image();
-flagIcon.src = 'images/flag.png';
+flagIcon.src = 'dist/images/flag.png';
 
-function reset () {
+function reset() {
     board = [];
     state = [];
     playing = true;
     first_click = false;
     var image = document.getElementById('smiley');
-    image.src = "images/smileFace.png";
+    image.src = "dist/images/smileFace.png";
 }
 
 function changeFunc() {
@@ -39,40 +38,38 @@ function changeFunc() {
     //alert(selectedValue);
     reset();
     if (selectedValue == "easy") {
-        COLS = 6,
-        ROWS = 6;
-        MINES = ROWS * 2;
+        COLS = 10,
+            ROWS = 10;
+        MINES = ROWS - 4;
         flag_count = MINES;
-        console.log(flag_count);
-       // console.log(ROWS);
-        //console.log(COLS);
         BLOCK_WIDTH = canvasWidth / COLS,
-        BLOCK_HEIGHT = canvasHeight / ROWS;
-    } 
+            BLOCK_HEIGHT = canvasHeight / ROWS;
+    }
     else if (selectedValue == "medium") {
         COLS = 15,
-        ROWS = 15;
+            ROWS = 15;
         MINES = ROWS * 2;
         flag_count = MINES;
-        console.log(ROWS);
-        console.log(COLS);
         BLOCK_WIDTH = canvasWidth / COLS,
-        BLOCK_HEIGHT = canvasHeight / ROWS;
-    } 
+            BLOCK_HEIGHT = canvasHeight / ROWS;
+    }
     else if (selectedValue == "difficult") {
         COLS = 20,
-        ROWS = 20;
+            ROWS = 20;
         MINES = ROWS * 2;
         flag_count = MINES;
-        console.log(ROWS);
-        console.log(COLS);
         BLOCK_WIDTH = canvasWidth / COLS,
-        BLOCK_HEIGHT = canvasHeight / ROWS;
+            BLOCK_HEIGHT = canvasHeight / ROWS;
     }
     init();
     render();
+    updateflag();
 }
 
+function updateflag() {
+    var flag_div = document.getElementById('flagCount').firstElementChild;
+    flag_div.textContent = flag_count;
+}
 
 function setBoundary(x, y) {
 
@@ -102,11 +99,9 @@ function countMinesAround(x, y) {
 function init() {
 
     for (var y = 0; y < ROWS; ++y) {
-        console.log("ROWS" + y);
         board.push([]);
         state.push([]);
         for (var x = 1; x <= COLS; ++x) {
-            console.log(x);
             board[y].push(0);
             state[y].push(STATE_CLOSED);
         }
@@ -140,7 +135,7 @@ function openBlock(x, y) {
         //alert('Game over!');
         playing = false;
         var image = document.getElementById('smiley');
-        image.src = "images/sadFace.png";
+        image.src = "dist/images/sadFace.png";
         timer.stop();
         revealBoard(false);
         return;
@@ -167,7 +162,7 @@ function openBlock(x, y) {
         // alert('You are victorious!');
         playing = false;
         var image = document.getElementById('smiley');
-        image.src = "images/winnerFace.png";
+        image.src = "dist/images/winnerFace.png";
         timer.stop();
         revealBoard(true);
     }
@@ -187,11 +182,28 @@ function checkVictory() {
 }
 
 function flagBlock(x, y) {
-
     if (state[y][x] == STATE_OPENED) {
         return;
     }
-    state[y][x] = 1 - state[y][x];
+
+    if (flag_count == 0) {
+        if (state[y][x] == STATE_FLAGGED && flag_count <= MINES) {
+            flag_count++;
+            state[y][x] = 1 - state[y][x];
+        }else {
+            alert("No flags remaining")
+        }
+    } else {
+        if (state[y][x] == STATE_FLAGGED && flag_count <= MINES) {
+            flag_count++;
+            state[y][x] = 1 - state[y][x];
+        } else if (state[y][x] != STATE_FLAGGED && flag_count >= 0) {
+            flag_count--;
+            state[y][x] = 1 - state[y][x];
+        }
+    }
+    console.log(state[y][x]);
+    console.log(flag_count)
 }
 
 function revealBoard(victorious) {
@@ -199,6 +211,8 @@ function revealBoard(victorious) {
         for (var x = 0; x < COLS; ++x) {
             if (board[y][x] == SET_MINE && victorious) {
                 state[y][x] = STATE_FLAGGED;
+                flag_count=0;
+                updateflag();
                 continue;
             }
             state[y][x] = STATE_OPENED;
