@@ -55,13 +55,13 @@ function renderBlock(x, y) {
     var viewCoordinates = modelToView(x, y);
     if (state[y][x] == STATE_OPENED) {
         ctx.shadowBlur = 0;
-        ctx.fillStyle = '#8c8c8c';
+        ctx.fillStyle = '#fcf3de';  //'#8c8c8c';
         
     }
     else {
         ctx.shadowBlur = 5;
         ctx.shadowColor = "#525252";
-        ctx.fillStyle = '#e8e8e8';
+        ctx.fillStyle = '#2b8cbe';//'#ee3c3c';//'#e8e8e8';
     }
 
     ctx.strokeStyle = 'black';

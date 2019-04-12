@@ -1,4 +1,4 @@
-var COLS = 15, ROWS = 15, 
+var COLS = 15, ROWS = 15,
 MINES = ROWS * 2;
 console.log(MINES);
 
@@ -8,21 +8,30 @@ var INIT_STATE = 0,
     STATE_CLOSED = 0,
     STATE_FLAGGED = 1,
     STATE_OPENED = 2;
-    
 var SET_MINE = -1;
 var playing = true;
 
-/*function changeFunc() {
+function changeFunc(){
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     alert(selectedValue);
 
     if(selectedValue == "easy"){
-        return x >= 0 && y >=0 
-              && x < 8 && y < 8;
+       var COLS= 10,
+           ROWS = 10;
+           MINES = ROWS * 2;
+           console.log(ROWS);
+           console.log(COLS);
+    }else if(selectedValue == "medium"){
+        var COLS= 15,
+           ROWS = 15;
+           MINES = ROWS * 2;
+           console.log(ROWS);
+           console.log(COLS);
     }
 }
-*/
+
+
 function setBoundary(x, y) {
     
     return x >= 0 && y >= 0
@@ -107,11 +116,13 @@ function timer(){
 }
 
 function init() {
-    timer();
+    
     for (var y = 0; y < ROWS; ++y) {
+        console.log("ROWS" +y);
         board.push([]);
         state.push([]);
-        for (var x = 0; x < COLS; ++x) {
+        for (var x = 1; x <= COLS; ++x) {
+            console.log(x);
             board[y].push(0);
             state[y].push(STATE_CLOSED);
         }
@@ -151,6 +162,7 @@ function openBlock(x, y) {
     }
     
     state[y][x] = STATE_OPENED;
+    
     if (board[y][x] == 0){
         for (var dx = -1; dx <= 1; ++dx) {
             for (var dy = -1; dy <= 1; ++dy) {
