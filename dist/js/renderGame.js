@@ -1,12 +1,12 @@
 
-function modelToView(x, y) {
+function BlockSize(x, y) {
     return {
         x: x * BLOCK_WIDTH,
         y: y * BLOCK_HEIGHT
     };
 }
 
-function viewToModel(x, y) {
+function BlockGridSize(x, y) {
     return {
         x: Math.floor(x / BLOCK_WIDTH),
         y: Math.floor(y / BLOCK_HEIGHT)
@@ -14,17 +14,17 @@ function viewToModel(x, y) {
 }
 
 function renderMine(x, y) {
-    var viewCoordinates = modelToView(x, y);
+    var viewCoordinates = BlockSize(x, y);
     ctx.drawImage(bombIcon, viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
 }
 
 function renderFlag(x, y) {
-    var viewCoordinates = modelToView(x, y);
+    var viewCoordinates = BlockSize(x, y);
     ctx.drawImage(flagIcon, viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
 }
 
 function renderNumber(x, y) {
-    var viewCoordinates = modelToView(x, y);
+    var viewCoordinates = BlockSize(x, y);
 
     ctx.fillStyle = colors[board[y][x] - 1];
     ctx.font = '20pt Verdana';
@@ -38,7 +38,7 @@ function renderNumber(x, y) {
 }
 
 function renderBlock(x, y) {
-    var viewCoordinates = modelToView(x, y);
+    var viewCoordinates = BlockSize(x, y);
     if (state[y][x] == STATE_OPENED) {
         ctx.shadowBlur = 0;
         ctx.fillStyle = '#fcf3de';
