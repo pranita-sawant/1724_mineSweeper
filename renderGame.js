@@ -1,17 +1,3 @@
-var canvasWidth = 600, canvasHeight = 600;
-var BLOCK_WIDTH = canvasWidth / COLS,
-    BLOCK_HEIGHT = canvasHeight / ROWS;
-var canvas = document.getElementById('canvas'),
-    ctx = canvas.getContext('2d');
-var colors = [
-    'blue', 'darkgreen', 'darkred', 'navyblue', 'purple', 'black'
-];
-
-var bombIcon = new Image();
-bombIcon.src = 'images/mines.jpg';
-var flagIcon = new Image();
-flagIcon.src = 'images/flag.png';
-
 
 function modelToView(x, y) {
     return {
@@ -55,23 +41,23 @@ function renderBlock(x, y) {
     var viewCoordinates = modelToView(x, y);
     if (state[y][x] == STATE_OPENED) {
         ctx.shadowBlur = 0;
-        ctx.fillStyle = '#fcf3de';  //'#8c8c8c';
-        
+        ctx.fillStyle = '#fcf3de';
     }
     else {
         ctx.shadowBlur = 5;
         ctx.shadowColor = "#525252";
-        ctx.fillStyle = '#2b8cbe';//'#ee3c3c';//'#e8e8e8';
+        ctx.fillStyle = '#2b8cbe';
     }
 
     ctx.strokeStyle = 'black';
     ctx.fillRect(viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
     ctx.strokeRect(viewCoordinates.x, viewCoordinates.y, BLOCK_WIDTH, BLOCK_HEIGHT);
 
+    
     if (state[y][x] == STATE_FLAGGED) {
         renderFlag(x, y);
     }
-
+    
     if (state[y][x] == STATE_OPENED) {
         switch (board[y][x]) {
             case 0: 
@@ -93,4 +79,4 @@ function render() {
     }
 }
 
- render();
+ 

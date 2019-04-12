@@ -1,7 +1,5 @@
-var COLS = 15, ROWS = 15,
-MINES = ROWS * 2;
-console.log(MINES);
-
+var COLS, ROWS, MINES;
+var first_click = false;
 var board = [];
 var state = [];
 var INIT_STATE = 0,
@@ -10,30 +8,74 @@ var INIT_STATE = 0,
     STATE_OPENED = 2;
 var SET_MINE = -1;
 var playing = true;
+var flag_count = 0;
+var canvasWidth = 600, canvasHeight = 600;
+var BLOCK_WIDTH, BLOCK_HEIGHT;
+var canvas = document.getElementById('canvas'),
+    ctx = canvas.getContext('2d');
+var colors = [
+    'blue', 'darkgreen', 'darkred', 'navyblue', 'purple', 'black'
+];
+var MOUSE_LEFT = 1,
+    MOUSE_RIGHT = 3;
 
-function changeFunc(){
+var bombIcon = new Image();
+bombIcon.src = 'images/mines.jpg';
+var flagIcon = new Image();
+flagIcon.src = 'images/flag.png';
+
+function reset () {
+    board = [];
+    state = [];
+    playing = true;
+    first_click = false;
+    var image = document.getElementById('smiley');
+    image.src = "images/smileFace.png";
+}
+
+function changeFunc() {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    alert(selectedValue);
-
-    if(selectedValue == "easy"){
-       var COLS= 10,
-           ROWS = 10;
-           MINES = ROWS * 2;
-           console.log(ROWS);
-           console.log(COLS);
-    }else if(selectedValue == "medium"){
-        var COLS= 15,
-           ROWS = 15;
-           MINES = ROWS * 2;
-           console.log(ROWS);
-           console.log(COLS);
+    //alert(selectedValue);
+    reset();
+    if (selectedValue == "easy") {
+        COLS = 6,
+        ROWS = 6;
+        MINES = ROWS * 2;
+        flag_count = MINES;
+        console.log(flag_count);
+       // console.log(ROWS);
+        //console.log(COLS);
+        BLOCK_WIDTH = canvasWidth / COLS,
+        BLOCK_HEIGHT = canvasHeight / ROWS;
+    } 
+    else if (selectedValue == "medium") {
+        COLS = 15,
+        ROWS = 15;
+        MINES = ROWS * 2;
+        flag_count = MINES;
+        console.log(ROWS);
+        console.log(COLS);
+        BLOCK_WIDTH = canvasWidth / COLS,
+        BLOCK_HEIGHT = canvasHeight / ROWS;
+    } 
+    else if (selectedValue == "difficult") {
+        COLS = 20,
+        ROWS = 20;
+        MINES = ROWS * 2;
+        flag_count = MINES;
+        console.log(ROWS);
+        console.log(COLS);
+        BLOCK_WIDTH = canvasWidth / COLS,
+        BLOCK_HEIGHT = canvasHeight / ROWS;
     }
+    init();
+    render();
 }
 
 
 function setBoundary(x, y) {
-    
+
     return x >= 0 && y >= 0
         && x < COLS && y < ROWS;
 }
@@ -57,68 +99,10 @@ function countMinesAround(x, y) {
     return count;
 }
 
-function timer(){
-    var min, sec, ms, timer_count, malt, salt, msalt;
-
-    var timer = {
-        start: function () {
-            ms = 0;
-            sec = 0;
-            min = 0;
-            timer_count = setInterval(function () {
-                if (ms == 100) {
-                    ms = 0;
-                    if (sec == 60) {
-                        sec = 0;
-                        min++;
-                    } else {
-                        sec++;
-                    }
-                } else{
-                    ms++;
-                }
-    
-                malt = timer.pad(min);
-                salt = timer.pad(sec);
-                msalt = timer.pad(ms);
-    
-                timer.update(malt + ":" + salt);
-            }, 10);
-        },
-        
-        stop: function () {
-            clearInterval(timer_count);
-        },
-    
-        update: function (txt) {
-            //console.log(txt)
-            if(playing == true){
-            var temp = document.getElementById("dispTimer");
-            temp.firstElementChild.textContent = txt;
-            }else{
-                timer.stop();
-            }
-            //console.log(temp);
-        },
-    
-        pad: function (time) {
-            var temp;
-            if (time < 10) {
-                temp = "0" + time;
-            } else {
-                temp = time;
-            }
-            return temp;
-        }
-    }
-
-    timer.start();
-}
-
 function init() {
-    
+
     for (var y = 0; y < ROWS; ++y) {
-        console.log("ROWS" +y);
+        console.log("ROWS" + y);
         board.push([]);
         state.push([]);
         for (var x = 1; x <= COLS; ++x) {
@@ -131,7 +115,7 @@ function init() {
         var x, y;
         do {
             x = Math.floor(Math.random() * COLS),
-            y = Math.floor(Math.random() * ROWS);
+                y = Math.floor(Math.random() * ROWS);
         } while (board[y][x] == SET_MINE);
 
         board[y][x] = SET_MINE;
@@ -157,13 +141,14 @@ function openBlock(x, y) {
         playing = false;
         var image = document.getElementById('smiley');
         image.src = "images/sadFace.png";
+        timer.stop();
         revealBoard(false);
         return;
     }
-    
+
     state[y][x] = STATE_OPENED;
-    
-    if (board[y][x] == 0){
+
+    if (board[y][x] == 0) {
         for (var dx = -1; dx <= 1; ++dx) {
             for (var dy = -1; dy <= 1; ++dy) {
                 var xx = x + dx,
@@ -179,10 +164,11 @@ function openBlock(x, y) {
 
 
     if (checkVictory()) {
-       // alert('You are victorious!');
+        // alert('You are victorious!');
         playing = false;
         var image = document.getElementById('smiley');
         image.src = "images/winnerFace.png";
+        timer.stop();
         revealBoard(true);
     }
 }
@@ -201,7 +187,7 @@ function checkVictory() {
 }
 
 function flagBlock(x, y) {
-    
+
     if (state[y][x] == STATE_OPENED) {
         return;
     }
@@ -220,4 +206,3 @@ function revealBoard(victorious) {
     }
 }
 
-init();
