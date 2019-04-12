@@ -40,7 +40,7 @@ function changeFunc() {
     if (selectedValue == "easy") {
         COLS = 10,
             ROWS = 10;
-        MINES = ROWS - 4;
+        MINES = ROWS * 2;
         flag_count = MINES;
         BLOCK_WIDTH = canvasWidth / COLS,
             BLOCK_HEIGHT = canvasHeight / ROWS;
@@ -158,8 +158,8 @@ function openBlock(x, y) {
     }
 
 
-    if (checkVictory()) {
-        // alert('You are victorious!');
+    if (checkWinner()) {
+        // alert('You are winner!');
         playing = false;
         var image = document.getElementById('smiley');
         image.src = "dist/images/winnerFace.png";
@@ -168,7 +168,7 @@ function openBlock(x, y) {
     }
 }
 
-function checkVictory() {
+function checkWinner() {
     for (var y = 0; y < ROWS; ++y) {
         for (var x = 0; x < COLS; ++x) {
             if (board[y][x] != SET_MINE) {
@@ -190,7 +190,7 @@ function flagBlock(x, y) {
         if (state[y][x] == STATE_FLAGGED && flag_count <= MINES) {
             flag_count++;
             state[y][x] = 1 - state[y][x];
-        }else {
+        } else {
             alert("No flags remaining")
         }
     } else {
@@ -206,12 +206,12 @@ function flagBlock(x, y) {
     console.log(flag_count)
 }
 
-function revealBoard(victorious) {
+function revealBoard(winner) {
     for (var y = 0; y < ROWS; ++y) {
         for (var x = 0; x < COLS; ++x) {
-            if (board[y][x] == SET_MINE && victorious) {
+            if (board[y][x] == SET_MINE && winner) {
                 state[y][x] = STATE_FLAGGED;
-                flag_count=0;
+                flag_count = 0;
                 updateflag();
                 continue;
             }
