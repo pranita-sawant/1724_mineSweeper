@@ -9,7 +9,7 @@ h2{
     width:auto;
     height: 80px;
     border-radius:12px;
-    margin:1em 0em 0em -10em;
+    margin:1em 0em 0em 20em;
     padding-left: 50px;
 }
 #flagCount{
@@ -27,7 +27,7 @@ h2{
     float: left;
     height: 4em;
     width: 7em;
-    margin: 0px -17px 10px 100px;
+    margin: 0px -17px 10px 25px;
     border-radius:12px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.20);
 }
@@ -86,7 +86,7 @@ p{
 /********** End of Menu ***********/
 canvas {
     display: block;
-    margin: 1em 0em 0em 40em;
+    margin: 1em 0em 0em 35em;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.59);
 }
 

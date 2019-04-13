@@ -35,8 +35,11 @@ function reset() {
 function changeFunc() {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    //alert(selectedValue);
+   
     reset();
+    if (selectedValue == "selectLevel") {
+        alert("Select Level to Start Game!!");
+    }else{
     if (selectedValue == "easy") {
         COLS = 10,
             ROWS = 10;
@@ -64,6 +67,7 @@ function changeFunc() {
     init();
     render();
     updateflag();
+    }
 }
 
 function updateflag() {
