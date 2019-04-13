@@ -1,9 +1,8 @@
 
 canvas.addEventListener('mousedown', function (e) {
-    var x = e.clientX - canvas.offsetLeft,
-        y = e.clientY - canvas.offsetTop;
-
-
+    var getCanvasBounds = canvas.getBoundingClientRect();
+    var x = e.clientX - getCanvasBounds.left,
+        y = e.clientY - getCanvasBounds.top;
     // hit test
     var gridCoordinates = BlockGridSize(x, y);
 
