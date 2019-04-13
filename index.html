@@ -8,46 +8,48 @@
         <link rel='stylesheet' href='dist/css/style.css' /> 
     </head>
     <body>
-    <div class="displayFlag">
-        <div class=flag>
-            <img src="dist/images/flagCount.png" />
-        </div>
-        <div id="flagCount">
-            <span></span>
-        </div>
+    <div class="instruction">
+        <h2>INSTRUCTION</h2>
+        <ul>
+            <li>To start Game, select Levels</li>
+        </ul>
     </div>
-    <div class="menu">
-        <div class="dropdown">
-            <select id="selectBox" onchange="changeFunc();" >
-                <option value="">Select Level</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="difficult">Difficult</option>
-            </select>
-        </div>
-        
-        <div class="smiley">
-            <img src="dist/images/smileFace.png" alt="smile" id="smiley" />
-        </div>
 
-        <div class="displayTimer">
-            <div class=timer>
-                <h5>Timer </h5>
+        <div class="displayFlag">
+            <div class=flag>
+                <img src="dist/images/flagCount.png" />
             </div>
-            <div id="dispTimer">
-                <p></p>
+            <div id="flagCount">
+                <span></span>
             </div>
         </div>
-    </div>
+        <div class="menu">
+            <div class="dropdown">
+                <select id="selectBox" onchange="changeFunc();" >
+                    <option value="">Select Level</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="difficult">Difficult</option>
+                </select>
+            </div>
+            <div class="smiley">
+                <img src="dist/images/smileFace.png" alt="smile" id="smiley" />
+            </div>
+            <div class="displayTimer">
+                <div class=timer>
+                    <h5>Timer </h5>
+                </div>
+                <div id="dispTimer">
+                    <p></p>
+                </div>
+            </div>
+        </div>
         <canvas id='canvas' width='600' height='600'>
-            
         </canvas>
+    
         <script src="dist/js/timer.js"></script>
         <script src='dist/js/controller.js'></script>
         <script src='dist/js/renderGame.js'></script>
         <script src='dist/js/mainGame.js'></script>
-        <script>
-            
-        </script>
     </body>
 </html>
