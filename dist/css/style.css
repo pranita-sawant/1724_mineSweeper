@@ -1,5 +1,5 @@
 body{
- background-color: green;
+/*background-color: green;*/
 }
 h2{
     text-align: center;
@@ -23,7 +23,7 @@ h2{
 }
 
 .displayFlag{
-    background-color: chartreuse;
+    background-color: white;
     float: left;
     height: 4em;
     width: 7em;
@@ -43,7 +43,7 @@ img{
 }
 
 .smiley{
-    background-color: chartreuse;
+    background-color: white;
     height: 4em;
     width: 4em;
     margin: 0px 0px 0px 40px;
@@ -58,7 +58,7 @@ img{
 }
 
 .displayTimer{
-    background-color: chartreuse;
+    background-color: white;
     height: 4em;
     width: 12em;
     margin: 0px 0px 0px 30px;
@@ -74,7 +74,7 @@ p{
 }
 
 .instruction{
-    background-color: chartreuse;
+    background-color: rgba(185, 183, 183, 0.822);
     float: left;
     height: 37em;
     width: 24em;
@@ -94,7 +94,7 @@ canvas {
 /******** Drop Down Button ************/
 
 select {
-    background-color: chartreuse;
+    background-color: white;
     height: 4em;
     width: 8em;
     padding: 16px;

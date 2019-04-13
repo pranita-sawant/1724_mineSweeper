@@ -46,7 +46,7 @@ function renderBlock(x, y) {
     else {
         ctx.shadowBlur = 5;
         ctx.shadowColor = "#525252";
-        ctx.fillStyle = 'chartreuse';//'#2b8cbe';
+        ctx.fillStyle = '#2b8cbe';
     }
 
     ctx.strokeStyle = 'black';
