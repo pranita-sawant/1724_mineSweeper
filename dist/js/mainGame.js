@@ -24,6 +24,7 @@ var flagIcon = new Image();
 flagIcon.src = 'dist/images/flag.png';
 
 function reset() {
+    timer.stop();
     board = [];
     state = [];
     playing = true;
@@ -68,7 +69,6 @@ function changeLevel() {
     render();
     updateflag();
     generateMines();
-    timer.stop();
     }
 }
 
