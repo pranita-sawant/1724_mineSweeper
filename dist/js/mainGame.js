@@ -25,6 +25,7 @@ flagIcon.src = 'dist/images/flag.png';
 
 function reset() {
     timer.stop();
+    timer.start();
     board = [];
     state = [];
     playing = true;
