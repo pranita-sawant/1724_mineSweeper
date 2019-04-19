@@ -30,7 +30,6 @@ function reset() {
     first_click = false;
     var image = document.getElementById('smiley');
     image.src = "dist/images/smileFace.png";
-    
 }
 
 function changeLevel() {
