@@ -68,6 +68,7 @@ function changeLevel() {
     render();
     updateflag();
     generateMines();
+    timer.stop();
     }
 }
 
