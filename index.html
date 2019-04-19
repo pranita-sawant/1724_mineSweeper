@@ -12,6 +12,7 @@
         <h2>INSTRUCTION</h2>
         <ul>
             <li>To start Game, select Levels</li>
+            <li>Reload the page to start New Game</li>
         </ul>
     </div>
 
@@ -25,7 +26,7 @@
         </div>
         <div class="menu">
             <div class="dropdown">
-                <select id="selectBox" onchange="changeFunc();" >
+                <select id="selectBox" onchange="changeLevel();" >
                     <option value="selectLevel">Select Level</option>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
@@ -33,7 +34,7 @@
                 </select>
             </div>
             <div class="smiley">
-                <img src="dist/images/smileFace.png" alt="smile" id="smiley" />
+                <img src="dist/images/smileFace.png" alt="smile" id="smiley" onclick="changeLevel()"/>
             </div>
             <div class="displayTimer">
                 <div class=timer>

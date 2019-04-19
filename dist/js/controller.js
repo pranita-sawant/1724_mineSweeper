@@ -16,12 +16,9 @@ canvas.addEventListener('mousedown', function (e) {
             break;
         case MOUSE_RIGHT:
             //console.log(flag_count);
-            //if(flag_count <= MINES){
             flagBlock(gridCoordinates.x, gridCoordinates.y);
-            //}
             updateflag();
-    }
-
+    } 
     render();
 
     return false;

@@ -30,9 +30,10 @@ function reset() {
     first_click = false;
     var image = document.getElementById('smiley');
     image.src = "dist/images/smileFace.png";
+    
 }
 
-function changeFunc() {
+function changeLevel() {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
    
@@ -43,7 +44,7 @@ function changeFunc() {
     if (selectedValue == "easy") {
         COLS = 10,
             ROWS = 10;
-        MINES = ROWS * 2;
+        MINES = ROWS;
         flag_count = MINES;
         BLOCK_WIDTH = canvasWidth / COLS,
             BLOCK_HEIGHT = canvasHeight / ROWS;
@@ -59,7 +60,7 @@ function changeFunc() {
     else if (selectedValue == "difficult") {
         COLS = 20,
             ROWS = 20;
-        MINES = ROWS * 2;
+        MINES = ROWS * 4;
         flag_count = MINES;
         BLOCK_WIDTH = canvasWidth / COLS,
             BLOCK_HEIGHT = canvasHeight / ROWS;
@@ -67,6 +68,7 @@ function changeFunc() {
     init();
     render();
     updateflag();
+    generateMines();
     }
 }
 
@@ -76,7 +78,6 @@ function updateflag() {
 }
 
 function setBoundary(x, y) {
-
     return x >= 0 && y >= 0
         && x < COLS && y < ROWS;
 }
@@ -101,7 +102,6 @@ function countMinesAround(x, y) {
 }
 
 function init() {
-
     for (var y = 0; y < ROWS; ++y) {
         board.push([]);
         state.push([]);
@@ -119,6 +119,9 @@ function init() {
 
         board[y][x] = SET_MINE;
     }
+}
+
+function generateMines(){
     for (var y = 0; y < ROWS; ++y) {
         for (var x = 0; x < COLS; ++x) {
             if (board[y][x] != SET_MINE) {
@@ -160,7 +163,6 @@ function openBlock(x, y) {
             }
         }
     }
-
 
     if (checkWinner()) {
         // alert('You are winner!');
@@ -206,8 +208,8 @@ function flagBlock(x, y) {
             state[y][x] = 1 - state[y][x];
         }
     }
-    console.log(state[y][x]);
-    console.log(flag_count)
+    //console.log(state[y][x]);
+    //console.log(flag_count);
 }
 
 function revealBoard(winner) {
