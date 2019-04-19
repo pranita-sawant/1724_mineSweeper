@@ -9,7 +9,7 @@ canvas.addEventListener('mousedown', function (e) {
     switch (e.which) {
         case MOUSE_LEFT:
             if (first_click == false) {
-               // timer.start();
+                //timer.start();
                 first_click = true
             }
             openBlock(gridCoordinates.x, gridCoordinates.y);

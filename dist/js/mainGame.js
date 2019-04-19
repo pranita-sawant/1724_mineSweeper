@@ -24,8 +24,7 @@ var flagIcon = new Image();
 flagIcon.src = 'dist/images/flag.png';
 
 function reset() {
-    timer.stop();
-    timer.start();
+    //timer.start();
     board = [];
     state = [];
     playing = true;
@@ -123,6 +122,7 @@ function init() {
 }
 
 function generateMines(){
+    timer.start();
     for (var y = 0; y < ROWS; ++y) {
         for (var x = 0; x < COLS; ++x) {
             if (board[y][x] != SET_MINE) {
